@@ -1,0 +1,14 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Sample / test files — don't publish these
+*_example.vroidcustomitem
+earphone*.vroidcustomitem
+bob_cut*.vroidcustomitem
+
+# OS files
+.DS_Store
+Thumbs.db
