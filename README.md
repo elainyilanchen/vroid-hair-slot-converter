@@ -19,7 +19,7 @@ This tool rewrites the slot information inside the file so you can use any hair 
 - **Windows** (tested on Windows 10/11)
 - **Python 3.8 or newer** — [Download Python](https://www.python.org/downloads/)  
   *(During installation, check ✅ "Add Python to PATH")*
-- **VRoid Studio** — [Download VRoid Studio](https://vroid.com/en/studio)
+- **VRoid Studio** — [Download VRoid Studio](https://vroid.com/en/studio) (or Steam)
 
 ---
 
@@ -82,7 +82,7 @@ earphone.vroidcustomitem  →  earphone_Front.vroidcustomitem
 
 ### Step 6 — Import into VRoid Studio
 
-Open VRoid Studio, go to the matching hair slot, and import the new file. It should load without any compatibility errors.
+Open VRoid Studio, go to the any customized hair item slot, and import the new file. It should load without any compatibility errors and auto jump to the corresponding hair slot.
 
 ---
 
@@ -106,7 +106,7 @@ Open VRoid Studio, go to the matching hair slot, and import the new file. It sho
 → Install Python from [python.org](https://www.python.org/downloads/) and make sure to check "Add Python to PATH" during installation. Then try again.
 
 **"This item is incompatible" error in VRoid Studio after importing**  
-→ Make sure you're importing the file into the correct slot (the one you selected during conversion). For example, a file converted to "Front" must be imported into the Front hair slot.
+→ The code may die... Note that this code is developped via Vroid 2.12, thus it's possible the code is truly not compatible
 
 **The converter window doesn't appear**  
 → Right-click `run_converter.bat` → "Run as administrator" and try again.
@@ -140,9 +140,9 @@ This is an **unofficial, community-made tool** and is not affiliated with, endor
 
 ## 这个工具是做什么的？
 
-VRoid Studio 会将每个发型自定义部件（`.vroidcustomitem` 文件）锁定到它最初创建时所属的发型插槽——前发、后发、侧发等。即使形状完全合适，你也无法把"前发"部件导入"后发"插槽。
+VRoid Studio 会将每个发型自定义部件（`.vroidcustomitem` 文件）锁定到它最初创建时所属的发型栏位——前发、后发、侧发等。即使形状完全合适，你也无法把"前发"部件导入"后发"栏位。
 
-本工具会修改文件内部的插槽信息，让你可以将任意发型部件用于任意插槽。
+本工具会修改文件内部的栏位信息，让你可以将任意发型部件用于任意栏位。
 
 ---
 
@@ -151,7 +151,7 @@ VRoid Studio 会将每个发型自定义部件（`.vroidcustomitem` 文件）锁
 - **Windows 系统**（已在 Windows 10/11 上测试）
 - **Python 3.8 或更高版本** — [下载 Python](https://www.python.org/downloads/)  
   *(安装时请务必勾选 ✅ "Add Python to PATH")*
-- **VRoid Studio** — [下载 VRoid Studio](https://vroid.com/en/studio)
+- **VRoid Studio** — [下载 VRoid Studio](https://vroid.com/en/studio) （或者Steam）
 
 ---
 
@@ -180,7 +180,7 @@ VRoid Studio 会将每个发型自定义部件（`.vroidcustomitem` 文件）锁
 │  输入文件 (.vroidcustomitem)                  │
 │  [ 你的文件路径 ]              [浏览...]       │
 │                                              │
-│  转换到哪个插槽                               │
+│  转换到哪个栏位                               │
 │  ● Front（前发）                              │
 │  ○ Back（后发）                               │
 │  ○ Sideburns（侧发）                          │
@@ -197,28 +197,28 @@ VRoid Studio 会将每个发型自定义部件（`.vroidcustomitem` 文件）锁
 
 点击 **浏览…**，选择第一步中导出的 `.vroidcustomitem` 文件。
 
-### 第四步 — 选择目标插槽
+### 第四步 — 选择目标栏位
 
-选择你希望这个部件能用于的发型插槽。
+选择你希望这个部件能用于的发型栏位。
 
 ### 第五步 — 开始转换
 
 点击 **▶ 转换**。完成后会弹出成功提示。
 
-转换后的文件会保存在**与原文件相同的文件夹**中，文件名末尾会加上插槽名称：
+转换后的文件会保存在**与原文件相同的文件夹**中，文件名末尾会加上栏位名称：
 ```
 耳机.vroidcustomitem  →  耳机_Front.vroidcustomitem
 ```
 
 ### 第六步 — 导入 VRoid Studio
 
-打开 VRoid Studio，进入对应的发型插槽，导入新文件。应该可以正常加载，不会出现兼容性错误。
+打开 VRoid Studio，在自定义发型物品处导入新文件 （会自动跳转到对应发型栏位）。应该可以正常加载，不会出现兼容性错误。
 
 ---
 
-## 插槽对照表
+## 栏位对照表
 
-| 插槽名称 | 日语 | 说明 |
+| 栏位名称 | 日语 | 说明 |
 |----------|------|------|
 | Front | 前髪 | 刘海 / 前发 |
 | Back | 後ろ髪 | 后发 |
@@ -236,10 +236,10 @@ VRoid Studio 会将每个发型自定义部件（`.vroidcustomitem` 文件）锁
 → 请从 [python.org](https://www.python.org/downloads/) 安装 Python，安装时务必勾选"Add Python to PATH"，然后重试。
 
 **导入 VRoid Studio 后提示"此部件不兼容"**  
-→ 请确认你是将文件导入到了正确的插槽（即转换时选择的目标插槽）。例如，转换为"Front"的文件必须导入到前发插槽。
+→ 可能是程序寄了。注：本程序是根据Vroid 2.12版本来开发的，所以确实有可能会有版本不兼容问题。想办法自己修吧！
 
 **转换器窗口没有弹出**  
-→ 右键点击 `run_converter.bat` → 选择"以管理员身份运行"，再试一次。
+→ 右键点击 `run_converter.bat` → 选择"以管理员身份运行"，再试一次。（再试一次吧！）
 
 ---
 
@@ -249,7 +249,7 @@ VRoid Studio 会将每个发型自定义部件（`.vroidcustomitem` 文件）锁
 ```
 python vroid_hair_type_converter.py  我的部件.vroidcustomitem  Front
 ```
-将 `Front` 替换为上方表格中的任意插槽名称即可。
+将 `Front` 替换为上方表格中的任意栏位名称即可。
 
 ---
 
