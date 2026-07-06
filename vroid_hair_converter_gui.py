@@ -44,14 +44,48 @@ SLOT_DISPLAY = {
 }
 
 
+def _make_dpi_aware():
+    """Tell Windows this process handles DPI itself, so the UI is rendered
+    crisply instead of being bitmap-stretched (blurry) on scaled/high-DPI
+    displays. Must run *before* the first Tk window is created."""
+    if sys.platform != "win32":
+        return
+    try:
+        import ctypes
+        try:
+            # PROCESS_SYSTEM_DPI_AWARE = 1  → sharp text, single scale factor
+            ctypes.windll.shcore.SetProcessDpiAwareness(1)
+        except (AttributeError, OSError):
+            # Older Windows without shcore.dll
+            ctypes.windll.user32.SetProcessDPIAware()
+    except Exception:
+        pass
+
+
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
+        self._apply_dpi_scaling()
         self.title("VRoid Hair Slot Converter")
         self.resizable(True, True)
-        self.minsize(560, 460)
+        self.minsize(int(560 * self._scale), int(460 * self._scale))
         self._build_ui()
         self._enable_drop()
+
+    # ── High-DPI scaling ──────────────────────────────────────────────────────
+    def _apply_dpi_scaling(self):
+        """Match Tk's point→pixel scaling to the real screen DPI so fonts and
+        widgets are both sharp and correctly sized. Pairs with _make_dpi_aware()."""
+        try:
+            dpi = self.winfo_fpixels("1i")   # pixels-per-inch reported by the OS
+        except Exception:
+            dpi = 96.0
+        self._scale = max(dpi / 96.0, 1.0)
+        try:
+            # Tk measures points as 1/72 inch; align it to the actual DPI.
+            self.tk.call("tk", "scaling", dpi / 72.0)
+        except Exception:
+            pass
 
     # ── UI Layout ─────────────────────────────────────────────────────────────
     def _build_ui(self):
@@ -220,6 +254,9 @@ class _LogRedirect:
 
 
 if __name__ == "__main__":
+    # Make the process DPI-aware *before* any Tk window exists (fixes blur).
+    _make_dpi_aware()
+
     # Try to enable drag-and-drop via tkinterdnd2 if available
     try:
         from tkinterdnd2 import TkinterDnD

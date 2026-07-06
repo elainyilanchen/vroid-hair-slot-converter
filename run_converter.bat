@@ -5,7 +5,15 @@
 title VRoid Hair Slot Converter
 cd /d "%~dp0"
 
-:: Try launching the GUI
+:: Launch with pythonw (windowed Python): no console window pops up and
+:: harmless startup messages (e.g. "libpng warning: iCCP ...") aren't shown.
+where pythonw >nul 2>nul
+if %errorlevel%==0 (
+    start "" pythonw vroid_hair_converter_gui.py
+    goto :eof
+)
+
+:: Fallback: pythonw not found, use console python so errors stay visible.
 python vroid_hair_converter_gui.py
 if errorlevel 1 (
     echo.
